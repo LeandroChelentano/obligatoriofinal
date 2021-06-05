@@ -1022,8 +1022,55 @@ function moreExpensiveCepa() {
         document.getElementById('wineHighCost').value = cepaMoreExpensive;
     }
 }
-    
-// RETRY BODEGA CON EL VINO MAS BARATO
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// BODEGA CON EL VINO MAS BARATO
 function StoreWithMoreLowCostWine() {
     var VinoLowCostPrice = Number.MAX_VALUE
     var VinoLowCostBodega = ''
