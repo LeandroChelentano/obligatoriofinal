@@ -34,6 +34,13 @@
             function hideBodegas() {
                 document.getElementById('bodegas').style.display = 'none'
             }
+            function showDeletedIds() {
+                document.getElementById('frmDeletedIds').style.display = 'block'
+                loadDeletedIds()
+            }
+            function hideDeletedIds() {
+                document.getElementById('frmDeletedIds').style.display = 'none'
+            }
             function continuar() {
                 eraseDataOnTable()
                 clearBodegasTable()
@@ -47,6 +54,8 @@
                     showVinos()
                     hideBodegas()
                 }
+                document.getElementById('displayId').innerHTML = `Id: Automatica`
+                DeletedIdSelected = -1
             }
             function acceder() {
                 hideHome()
@@ -108,7 +117,8 @@
                 <form id="formWine1">
                     <table id="tblVinos" border="3">
                         <p class="tblBigTitle" style="margin-left: 10%; position: absolute; top: 2%;">Datos:</p>
-                        <button onclick="showDeletedIds()" id="btnShowDeletedIds" >Usar Id Eliminada</button>
+                        <p class="tblSmallTitle" style="position: absolute; top: 3.5%; margin-left: 22%;" id="displayId">Id: Automatica</p>
+                        <input type="button" id="btnShowDeletedIds" onclick="showDeletedIds()" value="Usar Id Eliminada">
 
                         
                         <tr><td><p class="tblSmallTitle">Nombre:</p></td><td><input type="text" id="nameWine" class="tblInputs"></td></tr>
@@ -266,6 +276,16 @@
             </div>
     
             <img src="../images/credits.jpg" id="creditsBackground">
+        </div>
+
+        <div id="frmDeletedIds">
+            <center>
+                <p class="bigTitle">Selecciona una id eliminada:</p>
+                <br>
+                <select id="displayerDeletedIds" size="50" onclick="selectDeletedId()"></select>
+                <br>    
+            </center>
+        <button onclick="hideDeletedIds()" style="margin-left: 20px; border: 1px solid black;">Volver</button> 
         </div>
     </body>
 </html>

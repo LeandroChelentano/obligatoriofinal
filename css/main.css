@@ -152,8 +152,8 @@ body {
 
 #btnShowDeletedIds {
     position: absolute;
-    top: 7.3%;
-    left: 23%;
+    top: 8%;
+    left: 40%;
 }
 
 .tblBigTitle {
@@ -352,4 +352,25 @@ body {
     font-family: 'Ubuntu', sans-serif;
     font-size: 1vw;
     z-index: 21;
+}
+
+/* DELETED IDS */
+
+#frmDeletedIds {
+    position: absolute;
+    width: 30%;
+    height: 40%;
+    top: 30%;
+    left: 35%;
+    border: solid 1px black;
+    background-color: burlywood;
+
+    z-index: 14;
+    display: none;
+}
+
+#displayerDeletedIds {
+    height: 270px;
+    width: 70%;
+    margin-bottom: 10px;
 }

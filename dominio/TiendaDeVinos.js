@@ -52,8 +52,6 @@ function getCepas()
 // colocando la siguiente ID que sigue en la lista.
 function add() {
     getDataWine()
-    Id = ids.length;
-    ids.push(Id);
     var cepaBox = document.getElementById('cepaBox');
     cepaSelected = cepaBox.options[cepaBox.selectedIndex].value;
     var cepaI = cepaBox.selectedIndex
@@ -64,47 +62,73 @@ function add() {
         if (verifyInteger()) {
             alert('El precio y stock deben ser numeros.')
         } else {
-            if(vinos.some(vino => vino.nombre === Name)){
-                var index = 0
-                for (var i = 0; i < vinos.length; i++) {
-                    if (vinos[i].nombre == Name) {
-                        index = i
-                    }
+            if (DeletedIdSelected > -1) {
+                if(vinos.some(vino => vino.nombre === Name)) {
+                    alert('Si utilizar una id eliminada, debes colocar un nombre nuevo')
+                    document.getElementById('displayId').innerHTML = `Id: Automatica`
+                    DeletedIdSelected = -1
+                } else {
+                    vinos.push({
+                        id      : parseInt(DeletedIdSelected),
+                        nombre  : Name,
+                        precio  : Price,
+                        cepa    : cepaSelected,
+                        stock   : Stock,
+                        bodegas : []
+                    })
+                    cepas[cepaI] = ({
+                        id: cepas[cepaI].id,
+                        nombre: cepas[cepaI].nombre,
+                        enUso: cepas[cepaI].enUso + 1
+                    })
+                    DeletedIdSelected = -1
+                    deletedIds.splice(DeletedIdSelectedIndex, 1)
+                    document.getElementById('displayId').innerHTML = `Id: Automatica`
                 }
-                var existentStock = vinos[index].stock
-                var newStock = existentStock + Stock
-                
-                vinos[index] = ({
-                    id      : vinos[index].id,
-                    nombre  : vinos[index].nombre,
-                    precio  : vinos[index].precio,
-                    cepa    : vinos[index].cepa,
-                    stock   : newStock,
-                    bodegas : vinos[index].bodegas
-                })
             } else {
-                vinos.push({
-                    id      : Id,
-                    nombre  : Name,
-                    precio  : Price,
-                    cepa    : cepaSelected,
-                    stock   : Stock,
-                    bodegas : []
+                if(vinos.some(vino => vino.nombre === Name)){
+                    var index = 0
+                    for (var i = 0; i < vinos.length; i++) {
+                        if (vinos[i].nombre == Name) {
+                            index = i
+                        }
+                    }
+                    var existentStock = vinos[index].stock
+                    var newStock = existentStock + Stock
+                    
+                    vinos[index] = ({
+                        id      : vinos[index].id,
+                        nombre  : vinos[index].nombre,
+                        precio  : vinos[index].precio,
+                        cepa    : vinos[index].cepa,
+                        stock   : newStock,
+                        bodegas : vinos[index].bodegas
+                    })
+                } else {
+                    Id = ids.length;
+                    ids.push(Id);
+                    vinos.push({
+                        id      : Id,
+                        nombre  : Name,
+                        precio  : Price,
+                        cepa    : cepaSelected,
+                        stock   : Stock,
+                        bodegas : []
+                    })
+                }
+                cepas[cepaI] = ({
+                    id: cepas[cepaI].id,
+                    nombre: cepas[cepaI].nombre,
+                    enUso: cepas[cepaI].enUso + 1
                 })
             }
-            cepas[cepaI] = ({
-                id: cepas[cepaI].id,
-                nombre: cepas[cepaI].nombre,
-                enUso: cepas[cepaI].enUso + 1
-            })
-            displayDataOnSelect()
-            eraseDataOnTable()     
-            moreExpensiveCepa()
-            bodegaMoreExpensive()
         }
-
     }
     uploadDataStats()
+    displayDataOnSelect()
+    eraseDataOnTable()     
+    moreExpensiveCepa()
+    bodegaMoreExpensive()
 }
 
 // Esta funcion es empleada para verificar si el valor colocado dentro de las casillas de 
@@ -275,6 +299,8 @@ function select() {
         line.text = vinos[index].bodegas[i]
         relateDisplayer.add(line)
     }
+    document.getElementById('displayId').innerHTML = `Id: Automatica`
+    DeletedIdSelected = -1
 }
 
 // Funcion que al ser llamada elimina el elemento seleccionado del array y la opcion del select.
@@ -310,10 +336,12 @@ function remove() {
         // Esta funcion devuelve el indice del array en donde se encuentra el id requerido.
         var index = vinos.indexOf(vinos.find(vino => vino.id == id))
 
-        cepas[index] = ({
-            id: cepas[index].id,
-            nombre: cepas[index].nombre,
-            enUso: cepas[index].enUso - 1
+        var cepaBox = document.getElementById('cepaBox');
+        var cepaSelected = cepaBox.selectedIndex
+        cepas[cepaSelected] = ({
+            id: cepas[cepaSelected].id,
+            nombre: cepas[cepaSelected].nombre,
+            enUso: cepas[cepaSelected].enUso - 1
         })
 
 
@@ -327,6 +355,8 @@ function remove() {
         bodegaMoreExpensive() 
     }
     uploadDataStats()
+    document.getElementById('displayId').innerHTML = `Id: Automatica`
+    DeletedIdSelected = -1
 }
 
 
@@ -404,6 +434,8 @@ function modify() {
     moreExpensiveCepa()
     bodegaMoreExpensive()
     uploadDataStats()
+    document.getElementById('displayId').innerHTML = `Id: Automatica`
+    DeletedIdSelected = -1
 }
 
 function resetSelectedWineSellAndRefill() {
@@ -503,22 +535,6 @@ function refillWine() {
     document.getElementById('txtCantidadASumar').value = ''
     resetSelectedWineSellAndRefill()
 }
-
-function showDeletedIds() {
-    var displayerDeletedIds = document.getElementById('displayerDeletedIds')
-}
-
-// function showAndHideStatistics() {
-//     var statisticsBox = document.getElementById('statisticsBox')
-//     if (statisticsBox.style.dispay == 'block') {
-//         statisticsBox.style.dispay = 'none'
-//     } else {
-//         statisticsBox.style.dispay = 'block'
-//     }
-// }
-
-
-
 
 // CODIGO DE CEPAS Y BODEGAS
 // CODIGO DEFINITIVO
@@ -891,6 +907,27 @@ function desrelateWineStock() {
         alert(`${winee} no se encuentra relacionado con ${storee}`)
     }
     bodegaMoreExpensive()
+}
+
+function loadDeletedIds() {
+    var displayerDeletedIds = document.getElementById('displayerDeletedIds')
+    displayerDeletedIds.innerHTML = ''
+    for (var i = 0; i < deletedIds.length; i++) {
+        var line = document.createElement('option')
+        line.text = deletedIds[i]
+        displayerDeletedIds.add(line)
+    }
+}
+
+var DeletedIdSelected = -1
+var DeletedIdSelectedIndex = 0
+
+function selectDeletedId() {
+    var displayerDeletedIds = document.getElementById('displayerDeletedIds')
+    DeletedIdSelected = displayerDeletedIds.options[displayerDeletedIds.selectedIndex].value
+    DeletedIdSelectedIndex = document.getElementById('displayerDeletedIds').selectedIndex
+    hideDeletedIds()
+    document.getElementById('displayId').innerHTML = `Id: ${DeletedIdSelected}`
 }
 
 
