@@ -941,14 +941,22 @@ function stockSearch() {
     var storee = storeeCMB.options[storeeCMB.selectedIndex].value
     var cepaa = cepaaCMB.options[cepaaCMB.selectedIndex].value
 
-    var vinosAVerificar = bodegas[storeeI].vinosContenidos
+    // Busco Id de la bodega
+    var bodegaId = 0
+    for (var i = 0; i < bodegas.length; i++) {
+        if (bodegas[i].nombre == storee) {
+            bodegaId = i
+        }
+    }
+
+    var vinosAVerificar = bodegas[bodegaId].vinosContenidos
     var stockk = new Array()
     stockk.splice(0, stockk.length)
 
     for (var i = 0; i < vinos.length; i++) {
         for (var o = 0; o < vinosAVerificar.length; o++) {
-            if (vinos[i].nombre == vinosAVerificar[o]) {
-                if (vinos[i].cepa == cepaa) {
+            if (vinos[i].nombre == vinosAVerificar[o]) { // Si encuentra el nombre buscado
+                if (vinos[i].cepa == cepaa) { // Si encuentra la cepa dentro del vino
                     stockk.push(vinos[i].stock)
                 }
             }
