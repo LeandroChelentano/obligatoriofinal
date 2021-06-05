@@ -208,7 +208,7 @@ body {
     margin: 2%;
     margin-top: 1%;
     width: 45.5%;
-    height: clamp(200px, 400px, 400px);
+    height: clamp(200px, 350px, 400px);
 }
 
 #stockControl {
@@ -258,7 +258,7 @@ body {
 }
 
 #dbBodegas {
-    height: 640px;
+    height: 540px;
     width: 90%;
 }
 
@@ -281,7 +281,7 @@ body {
 
 #dbCepas {
     width: 90%;
-    height: 340px;
+    height: 280px;
 }
 
 /* RELATING WINES AND STORES */
