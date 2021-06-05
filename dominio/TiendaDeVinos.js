@@ -995,17 +995,6 @@ function uploadDataStats() {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
 // Cepa mas cara
 function moreExpensiveCepa() {
     var priceWineMoreExpensive = 0;
@@ -1022,16 +1011,6 @@ function moreExpensiveCepa() {
         document.getElementById('wineHighCost').value = cepaMoreExpensive;
     }
 }
-
-
-
-
-
-
-
-
-
-
 
 
 
