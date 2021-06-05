@@ -128,7 +128,7 @@ function add() {
     displayDataOnSelect()
     eraseDataOnTable()     
     moreExpensiveCepa()
-    bodegaMoreExpensive()
+    StoreWithMoreLowCostWine()
 }
 
 // Esta funcion es empleada para verificar si el valor colocado dentro de las casillas de 
@@ -352,7 +352,7 @@ function remove() {
         eraseDataOnTable()
         resetSelectedWineSellAndRefill()     
         moreExpensiveCepa()  
-        bodegaMoreExpensive() 
+        StoreWithMoreLowCostWine() 
     }
     uploadDataStats()
     document.getElementById('displayId').innerHTML = `Id: Automatica`
@@ -432,7 +432,7 @@ function modify() {
     }
 
     moreExpensiveCepa()
-    bodegaMoreExpensive()
+    StoreWithMoreLowCostWine()
     uploadDataStats()
     document.getElementById('displayId').innerHTML = `Id: Automatica`
     DeletedIdSelected = -1
@@ -852,9 +852,11 @@ function relateWineStock() { // Relation is going to be mutual
     // Check existence into that store
     var existenceOnStore = false
     for (var i = 0; i < bodegas.length; i++) {
-        if (winee == bodegas[i].nombre) {
-            existenceOnStore = true
-        }
+        for (var o = 0; o < bodegas[i].vinosContenidos.length; o++) {
+            if (winee == bodegas[i].vinosContenidos[o]) {
+                existenceOnStore = true
+            }
+        }  
     }
     if (existenceOnStore) {
         alert('El vino ya existe en la bodega.')
@@ -863,7 +865,7 @@ function relateWineStock() { // Relation is going to be mutual
         bodegas[storeeI].vinosContenidos.push(winee)
         vinos[wineeI].bodegas.push(storee)
     }
-    bodegaMoreExpensive()
+    StoreWithMoreLowCostWine()
 }
 
 // Eliminar vino de bodega
@@ -906,7 +908,7 @@ function desrelateWineStock() {
     } else {
         alert(`${winee} no se encuentra relacionado con ${storee}`)
     }
-    bodegaMoreExpensive()
+    StoreWithMoreLowCostWine()
 }
 
 function loadDeletedIds() {
@@ -1008,41 +1010,35 @@ function uploadDataStats() {
 function moreExpensiveCepa() {
     var priceWineMoreExpensive = 0;
     var cepaMoreExpensive;
-    for(i = 0 ; i < vinos.length ; i++){
-        if (vinos[i].precio > priceWineMoreExpensive){
+    for(i = 0 ; i < vinos.length ; i++) {
+        if (vinos[i].precio > priceWineMoreExpensive) {
             priceWineMoreExpensive = vinos[i].precio;
             cepaMoreExpensive = vinos[i].cepa;
         }
     }
-    if(cepaMoreExpensive == undefined){
+    if(cepaMoreExpensive == undefined) {
         cepaMoreExpensive = '';
-    }
-    else{
-    document.getElementById('wineHighCost').value = cepaMoreExpensive;
-    }
-    
-}
-
-
-// BODEGA CON EL VINO MAS BARATO
-function bodegaMoreExpensive() {
-    var bodegaMoreExpensive;
-    var priceMoreExpensiveWine = Number.MIN_VALUE;
-    for (i = 0 ; i < vinos.lenght ; i++){
-        if(vinos[i].precio < priceMoreExpensiveWine){
-            priceMoreExpensiveWine = vinos[i].precio;
-            for(var o = 0; o < vinos[i].bodegas ; o++){
-               
-    } 
-    if (bodegaMoreExpensive == undefined) {
-        bodegaMoreExpensive = 'LA BODEGA AUN NO ESTA DEFINIDA';
-        document.getElementById('wineLowCost').value = bodegaMoreExpensive;
-    }
-    else{
-        document.getElementById('wineLowCost').value = bodegaMoreExpensive;
-    }
-    
-    }
+    } else {
+        document.getElementById('wineHighCost').value = cepaMoreExpensive;
     }
 }
     
+// RETRY BODEGA CON EL VINO MAS BARATO
+function StoreWithMoreLowCostWine() {
+    var VinoLowCostPrice = Number.MAX_VALUE
+    var VinoLowCostBodega = ''
+    for (var i = 0; i < vinos.length; i++) {
+        if (vinos[i].precio < VinoLowCostPrice) {
+            if (vinos[i].bodegas.length > 0) {
+                VinoLowCostPrice = vinos[i].precio
+                VinoLowCostBodega = vinos[i].bodegas[0]
+            }
+        }
+    }
+    if (VinoLowCostBodega == undefined) {
+        VinoLowCostBodega = '';
+        document.getElementById('wineLowCost').value = VinoLowCostBodega;
+    } else {
+        document.getElementById('wineLowCost').value = VinoLowCostBodega;
+    }
+}
