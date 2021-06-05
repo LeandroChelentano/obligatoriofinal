@@ -102,12 +102,13 @@
             <div class="separator" style="left: 330px;"></div>
         </div>
         
+        <!-- VINOS -->
         <div id="vinos">
             <div id="tableData">
                 <form id="formWine1">
                     <table id="tblVinos" border="3">
-                        <p class="tblBigTitle" style="margin-left: 4%; position: absolute; top: 0px;">Datos:</p>
-                        <button onclick="showDeletedIds()" id="btnShowDeletedIds">Usar Id Eliminada</button>
+                        <p class="tblBigTitle" style="margin-left: 10%; position: absolute; top: 2%;">Datos:</p>
+                        <button onclick="showDeletedIds()" id="btnShowDeletedIds" >Usar Id Eliminada</button>
 
                         
                         <tr><td><p class="tblSmallTitle">Nombre:</p></td><td><input type="text" id="nameWine" class="tblInputs"></td></tr>
@@ -132,10 +133,10 @@
                     </tr> 
                 </table>
             </div>
-
+            
             <div class="dataBase">
-                <p class="bigTitle" style="margin-left: 2%; width: 560px; margin-right: 0; float: left;">Vinos:</p>
-                <p class="bigTitle" style="margin-left: 2%;">Bodegas que lo contienen:</p>
+                <p class="bigTitle" style="margin-left: 2%; width: 46%; margin-right: 0; float: left;">Vinos:</p>
+                <p class="bigTitle" style="margin-left: 52%;">Bodegas que lo contienen:</p>
                 <select class="dbWine" id="dbWine" size="200" onclick="select()"></select>  
                 <select class="dbWine" id="dbWineOnStore" size="200" onclick="select()"></select>
             </div>
@@ -143,7 +144,7 @@
             <div id="stockControl">
                 <center>
                     <table name="tblSell">
-                        <p class="bigTitle" style="padding-top: 1%;">Vender</p>
+                        <p class="bigTitle" style="padding-top: 10%;">Vender</p>
                         <p class="smallTitle" id="selectedWineDisplayer">No hay seleccion</p>
                         <input type="text" id="txtCantidadARestar" style="width: 33%; margin-bottom: 1%;">
                         <br><button onclick="sellWine()" style="width: 30%;  margin-bottom: 5%;">Vender</button>
@@ -180,13 +181,15 @@
                         </tr>
                     </table>
     
-                    <table style="margin-top: 1%;">
+                    <table style="margin-top: 1%; width: 90%;">
                         <tr>
                             <td>
-                                <button onclick="addBodegas()">ALTA</button>
-                                <button onclick="removeBodega()">BAJA</button>
-                                <button onclick="modifyBodegas()">MODIFICAR</button>
-                                <button onclick="clearBodegasTable()">LIMPIAR</button>
+                                <center>
+                                    <button class="abmBodegasBtns" onclick="addBodegas()">ALTA</button>
+                                    <button class="abmBodegasBtns" onclick="removeBodega()">BAJA</button>
+                                    <button class="abmBodegasBtns" onclick="modifyBodegas()">MODIFICAR</button>
+                                    <button class="abmBodegasBtns" onclick="clearBodegasTable()">LIMPIAR</button>
+                                </center>
                             </td>
                         </tr>
                     </table>
@@ -222,11 +225,11 @@
     
             <div class="relateWineStock">
                 <center>
-                    <p class="bigTitle" style="margin-bottom: 4%;">Agregar vino a bodegas</p>
+                    <p class="bigTitle" style="margin-bottom: 4%; margin-top: 11%;">Agregar vino a bodegas</p>
                     
                     <table border="3" id="tblRelate" style="width: 90%;">
                         <tr>
-                            <td><p class="smallTitle" style="padding: 3%;">Vino:</p></td>
+                            <td style="width: 30%;"><p class="smallTitle" style="padding: 3%;">Vino:</p></td>
                             <td><select id="selectWine" class="relateCombo"></select></td>
                         </tr>
                         <tr>
