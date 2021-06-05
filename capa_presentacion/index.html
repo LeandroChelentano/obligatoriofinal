@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title>Obligatorio</title>
+        <link rel='stylesheet' type='text/css' href='../css/main.css'>
+        <script type='text/javascript' src='../dominio/TiendaDeVinos.js'></script>
+        <!-- <script type='text/javascript' src='../dominio/second.js'></script> -->
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
+        <script>
+            function showHome() {
+                document.getElementById('home').style.display = 'block'
+            }
+            function hideHome() {
+                document.getElementById('home').style.display = 'none'
+            }
+            function showSidebar() {
+                document.getElementById('sideBar').style.display = 'block'
+            }
+            function hideSidebar() {
+                document.getElementById('sideBar').style.display = 'none'
+            }
+            function showVinos() {
+                document.getElementById('vinos').style.display = 'block'
+            }
+            function hideVinos() {
+                document.getElementById('vinos').style.display = 'none'
+            }
+            function showBodegas() {
+                document.getElementById('bodegas').style.display = 'block'
+            }
+            function hideBodegas() {
+                document.getElementById('bodegas').style.display = 'none'
+            }
+            function continuar() {
+                eraseDataOnTable()
+                clearBodegasTable()
+                uploadDataStats()
+                var vinos = document.getElementById('vinos')
+                var bodegas = document.getElementById('bodegas')
+                if (vinos.style.display == 'block') {
+                    hideVinos()
+                    showBodegas()
+                } else {
+                    showVinos()
+                    hideBodegas()
+                }
+            }
+            function acceder() {
+                hideHome()
+                showVinos()
+                showSidebar()
+            }
+            function showCredits() {
+                document.getElementById('creditos').style.display = 'block'
+            }
+            function hideCredits() {
+                document.getElementById('creditos').style.display = 'none'
+            }
+        </script>
+    </head>
+    
+    <body bgcolor="black">
+        <!-- INDEX -->
+        <div id="home">
+            <img src="../images/home-background.jpg" type="image/jpg" id="homeBg">
+            <center>
+                <button onclick="acceder()" id="init_button">Acceder</button>
+            </center>
+        </div>
+
+        <!-- SIDE BAR -->
+        <div id="sideBar">
+            <center>
+                <img src="../images/test.png" tpye="image/png" class='logoSideBar'>                    
+            </center>
+                
+            <button class="btnSideBar" onclick="continuar()" style="margin-top: 3%;">Continuar..</button>
+
+            <div id="statisticsBox">                      
+                <p class="bigTitle" style="margin-top: 0;">BODEGA CON EL VINO MAS BARATO:</p>
+                <input type="text" id="wineLowCost" class="leftContent" readonly="readonly">
+                    
+                <p class="bigTitle">CEPA MAS CARA:</p>
+                <input type="text" id="wineHighCost" class="leftContent" readonly="readonly">
+                    
+                <p class="bigTitle">CONSULTA STOCK</p>
+                <p class="smallTitle">SELECCIONE BODEGA</p>
+                <select id="selectBodega" class="leftContentCombo"></select> 
+                    
+                <p class="smallTitle">SELECCIONE CEPA</p>
+                <select id="selectCepa" class="leftContentCombo" onclick="stockSearch()"></select>
+
+                <p class="subTitle">RESULTADO:</p>
+                <input type="text" id="showStock" class="leftContent" style="margin-bottom: 0px;"> 
+            </div>
+
+            <button class="btnSideBar" onclick="showCredits()" style="margin-top: 6%;">CREDITOS</button>
+        
+            <div class="separator" style="left: 330px;"></div>
+        </div>
+        
+        <div id="vinos">
+            <div id="tableData">
+                <form id="formWine1">
+                    <table id="tblVinos" border="3">
+                        <p class="tblBigTitle" style="margin-left: 4%; position: absolute; top: 0px;">Datos:</p>
+                        <button onclick="showDeletedIds()" id="btnShowDeletedIds">Usar Id Eliminada</button>
+
+                        
+                        <tr><td><p class="tblSmallTitle">Nombre:</p></td><td><input type="text" id="nameWine" class="tblInputs"></td></tr>
+                        
+                        <tr><td><p class="tblSmallTitle">Precio:</p></td><td><input type="text" id="priceWine" class="tblInputs"></td></tr>
+                        
+                        <tr><td><p class="tblSmallTitle">Cepa:</p></td><td><select id="cepaBox"></select> </td></tr>     
+
+                        <tr><td><p class="tblSmallTitle">Stock:</p></td><td><input type="text" id="stockWine" class="tblInputs"></td></tr>
+                    </table>
+                </form>
+                <table id="abmBtns">
+                    <tr>
+                        <td colspan="2">
+                            <center>
+                                <input type="button" value="ALTA" class="dataButton" onclick="add()">
+                                <input type="button" value="BAJAS" class="dataButton" onclick="remove()">
+                                <input type="button" value="MODIFICAR" class="dataButton" onclick="modify()">                                   
+                                <input type="button" value="LIMPIAR" class="dataButton" onclick="eraseDataOnTable()">
+                            </center>
+                        </td>
+                    </tr> 
+                </table>
+            </div>
+
+            <div class="dataBase">
+                <p class="bigTitle" style="margin-left: 2%; width: 560px; margin-right: 0; float: left;">Vinos:</p>
+                <p class="bigTitle" style="margin-left: 2%;">Bodegas que lo contienen:</p>
+                <select class="dbWine" id="dbWine" size="200" onclick="select()"></select>  
+                <select class="dbWine" id="dbWineOnStore" size="200" onclick="select()"></select>
+            </div>
+
+            <div id="stockControl">
+                <center>
+                    <table name="tblSell">
+                        <p class="bigTitle" style="padding-top: 1%;">Vender</p>
+                        <p class="smallTitle" id="selectedWineDisplayer">No hay seleccion</p>
+                        <input type="text" id="txtCantidadARestar" style="width: 33%; margin-bottom: 1%;">
+                        <br><button onclick="sellWine()" style="width: 30%;  margin-bottom: 5%;">Vender</button>
+                    </table>
+
+                    <table name="tblRefill">
+                        <p class="bigTitle">Agregar Stock</p>
+                        <p class="smallTitle" id="selectedWineDisplayer2">No hay seleccion</p>
+                        <input type="text" id="txtCantidadASumar" style="width: 33%; margin-bottom: 1%;">
+                        <br><button onclick="refillWine()" style="width: 30%;">Agregar stock</button>
+                    </table>
+                </center>  
+            </div>
+
+            <img src="../images/abmVinosBackground.jpg" id="imgAbmVinosBackground">
+        </div>
+
+        <div id="bodegas">
+            <div class="bodegas">
+                <center>
+                    <p class="bigTitle" style="margin-bottom: 5%;">Bodegas</p>
+                    <table border="3"  style="width: 90%;">
+                        <tr>
+                            <td style="padding: 3%;">Nombre:</td>
+                            <td><input type="text" class="bodegaTblInput" id="nombreBodega"></td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 3%;">Telefono:</td>
+                            <td><input type="text" class="bodegaTblInput" id="telefonoBodega"></td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 3%;">Localidad:</td>
+                            <td><input type="text" class="bodegaTblInput" id="localidadBodega"></td>
+                        </tr>
+                    </table>
+    
+                    <table style="margin-top: 1%;">
+                        <tr>
+                            <td>
+                                <button onclick="addBodegas()">ALTA</button>
+                                <button onclick="removeBodega()">BAJA</button>
+                                <button onclick="modifyBodegas()">MODIFICAR</button>
+                                <button onclick="clearBodegasTable()">LIMPIAR</button>
+                            </td>
+                        </tr>
+                    </table>
+    
+                    <select id="dbBodegas" size="100" onclick="bodegasSelection()" style="margin-top: 3%;"></select>
+                </center>
+            </div>
+    
+            <div class="cepas">
+                <center>
+                    <p class="bigTitle" style="margin-bottom: 5%;">Cepas</p>
+                    <table border="3" style="width: 90%;">
+                        <tr>
+                            <td style="padding: 3%;">Nombre:</td>
+                            <td><input type="text" id="tblNombreCepa"></td>
+                        </tr>
+                    </table>
+    
+                    <table style="margin-top: 1%; margin-bottom: 3%;">
+                        <tr>
+                            <td>
+                                <button onclick="addCepa()">ALTA</button>
+                                <button onclick="removeCepa()">BAJA</button>
+                                <button onclick="modifyCepa()">MODIFICAR</button>
+                                <button onclick="clearCepasTable()">LIMPIAR</button>
+                            </td>
+                        </tr>
+                    </table>
+    
+                    <select id="dbCepas" size="100" onclick="selectCepa()"></select>
+                </center>
+            </div>
+    
+            <div class="relateWineStock">
+                <center>
+                    <p class="bigTitle" style="margin-bottom: 4%;">Agregar vino a bodegas</p>
+                    
+                    <table border="3" id="tblRelate" style="width: 90%;">
+                        <tr>
+                            <td><p class="smallTitle" style="padding: 3%;">Vino:</p></td>
+                            <td><select id="selectWine" class="relateCombo"></select></td>
+                        </tr>
+                        <tr>
+                            <td><p class="smallTitle" style="padding: 3%;">Bodega:</p></td>
+                            <td><select id="selectStore" class="relateCombo"></select></td>
+                        </tr>
+                    </table>
+    
+                    <button id="relateWineStock" onclick="relateWineStock()" style="width: 30%; margin-top: 3%;">Agregar</button>
+                    <button id="relateWineStock" onclick="desrelateWineStock()" style="width: 30%; margin-top: 3%;">Eliminar</button>
+                </center>
+            </div>
+    
+            <div class="abmVinosBackground">
+                <img src="../images/abmVinosBackground.jpg" id="imgAbmVinosBackground">
+            </div>
+        </div>
+
+        <div id="creditos">
+            <div class="authors">
+                <p style="margin: 0px;" id="creditsTitle">Autores:</p>
+                <ul style="margin: 0px;"  id="creditsSubtitle">
+                    <li>Leandro Chelentano</li>
+                    <li>Nicolas Guitierrez</li>
+                </ul>
+            </div>
+    
+            <div class="btns">
+                <button id="btns">Manual de uso</button>
+                <button id="btns">Terminos de uso</button>
+                <br>
+                <br>
+                <button onclick="hideCredits()" id="btns">Volver</button>
+            </div>
+    
+            <img src="../images/credits.jpg" id="creditsBackground">
+        </div>
+    </body>
+</html>
