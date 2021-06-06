@@ -103,7 +103,7 @@
                 <select id="selectCepa" class="leftContentCombo" onclick="stockSearch()"></select>
 
                 <p class="subTitle">RESULTADO:</p>
-                <input type="text" id="showStock" class="leftContent" style="margin-bottom: 0px;"> 
+                <input type="text" id="showStock" class="leftContent" style="margin-bottom: 0px;" readonly="readonly"> 
             </div>
 
             <button class="btnSideBar" onclick="showCredits()" style="margin-top: 50%;">CREDITOS</button>
@@ -156,14 +156,14 @@
                     <table name="tblSell">
                         <p class="bigTitle" style="padding-top: 7%;">Vender</p>
                         <p class="smallTitle" id="selectedWineDisplayer">No hay seleccion</p>
-                        <input type="text" id="txtCantidadARestar" style="width: 33%; margin-bottom: 1%;">
+                        <input type="text" id="txtCantidadARestar" style="width: 33%; margin-bottom: 1%;" >
                         <br><button onclick="sellWine()" style="width: 30%;  margin-bottom: 5%;">Vender</button>
                     </table>
 
                     <table name="tblRefill">
                         <p class="bigTitle">Agregar Stock</p>
                         <p class="smallTitle" id="selectedWineDisplayer2">No hay seleccion</p>
-                        <input type="text" id="txtCantidadASumar" style="width: 33%; margin-bottom: 1%;">
+                        <input type="text" id="txtCantidadASumar" style="width: 33%; margin-bottom: 1%;" >
                         <br><button onclick="refillWine()" style="width: 30%;">Agregar stock</button>
                     </table>
                 </center>  

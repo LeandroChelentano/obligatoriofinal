@@ -849,15 +849,20 @@ function getRelate() {
 // Agregar vino a bodega
 function relateWineStock() { // Relation is going to be mutual
     getRelate()
+    var idOfStore = 0
+    for (var i = 0; i < bodegas.length; i++) {
+        if (storee == bodegas[i].nombre) {
+            idOfStore = i
+        }
+    }
+
     // Check existence into that store
     var existenceOnStore = false
-    for (var i = 0; i < bodegas.length; i++) {
-        for (var o = 0; o < bodegas[i].vinosContenidos.length; o++) {
-            if (winee == bodegas[i].vinosContenidos[o]) {
-                existenceOnStore = true
-            }
-        }  
-    }
+    for (var i = 0; i < bodegas[idOfStore].vinosContenidos.length; i++) {
+        if (winee == bodegas[idOfStore].vinosContenidos[i]) {
+            existenceOnStore = true
+        }
+    }  
     if (existenceOnStore) {
         alert('El vino ya existe en la bodega.')
     } else {
@@ -1013,51 +1018,15 @@ function moreExpensiveCepa() {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // BODEGA CON EL VINO MAS BARATO
 function StoreWithMoreLowCostWine() {
     var VinoLowCostPrice = Number.MAX_VALUE
-    var VinoLowCostBodega = ''
+    var VinoLowCostBodega = '';
     for (var i = 0; i < vinos.length; i++) {
         if (vinos[i].precio < VinoLowCostPrice) {
             if (vinos[i].bodegas.length > 0) {
-                VinoLowCostPrice = vinos[i].precio
-                VinoLowCostBodega = vinos[i].bodegas[0]
+                VinoLowCostPrice = vinos[i].precio;
+                VinoLowCostBodega = vinos[i].bodegas[0];
             }
         }
     }

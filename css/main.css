@@ -17,11 +17,11 @@ body {
 
 #homeBg {
     position: absolute;
-    top: -150px;
+    top: 0px;
     left: -1%;
     width: 105%;
     z-index: 15;
-    filter: blur(2px);
+    /* filter: blur(2px); */
 }
 
 #init_button{
