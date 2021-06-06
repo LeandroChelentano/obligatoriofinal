@@ -35,7 +35,6 @@ function getDataWine() {
     Stock = parseInt(document.getElementById("stockWine").value);
 }   
 
-
 function getCepas()
 {
     var cepaBox = document.getElementById('cepaBox');
@@ -150,7 +149,6 @@ function verifyOtherInteger(b) {
         return false;
     }
 }
-
 
 // Esta funcion sirve para validar que todos los valores estan llenos.
 function verifyEmpty() {
@@ -358,8 +356,6 @@ function remove() {
     document.getElementById('displayId').innerHTML = `Id: Automatica`
     DeletedIdSelected = -1
 }
-
-
 
 function modify() {
     var dataDisplayer = document.getElementById("dbWine");
@@ -796,11 +792,15 @@ function modifyCepa() {
     if (validateEmpty()) {
         alert('El elemento se encuentra vacio.')
     } else {
-        cepas[index] = ({
-            id: cepas[index].id,
-            nombre: NAME_CEPA,
-            enUso: cepas[index].enUso
-        })
+        if (cepas[index].enUso.length > 0) {
+            cepas[index] = ({
+                id: cepas[index].id,
+                nombre: NAME_CEPA,
+                enUso: cepas[index].enUso
+            })
+        } else {
+            alert(`No puedes editar una cepa que este en uso.`)
+        }
     }
     clearCepasTable()
     showCepas()
@@ -936,7 +936,6 @@ function selectDeletedId() {
     hideDeletedIds()
     document.getElementById('displayId').innerHTML = `Id: ${DeletedIdSelected}`
 }
-
 
 // STATS
 
