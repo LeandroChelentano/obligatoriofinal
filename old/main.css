@@ -21,6 +21,7 @@ body {
     left: -1%;
     width: 105%;
     z-index: 15;
+    /* filter: blur(2px); */
 }
 
 #init_button{
@@ -29,14 +30,12 @@ body {
     padding: 0.7%;
     font-size: 2vw;
     z-index: 15;
-    background-color: #2F528C;
-    color: white;
 }
 
 /* SIDE BAR */
 
 #sideBar {
-    background-color: #BDA888 ;
+    background-color: white;
     position: absolute;
     left: 30px;
     top: 3%;
@@ -55,8 +54,6 @@ body {
     width: 300px;
     height: 30px;
     font-size: 1.1vw;
-    background-color: #2F528C;
-    color: white;
 }
 
 #statisticsBox {
@@ -148,7 +145,7 @@ body {
     top: 3%;
     width: 45%;
     height: 45%;
-    background-color: #BDA888;
+    background-color: white;
 
     z-index: 13;
 }
@@ -157,8 +154,6 @@ body {
     position: absolute;
     top: 8%;
     left: 40%;
-    background-color: #2F528C;
-    color: white;
 }
 
 .tblBigTitle {
@@ -181,7 +176,6 @@ body {
 #tblVinos {
     margin: 10%;
     margin-bottom: 1%;
-    background-color: #BDA888 ;
 }
 
 #abmBtns {
@@ -195,8 +189,6 @@ body {
     margin-right: 5px;
     border: solid 1px black;
     width: 22%;
-    background-color: #2F528C;
-    color: white;
 }
 
 /* DATA BASE */
@@ -207,7 +199,7 @@ body {
     top: 50%;
     width:78%;
     height: 46%;
-    background-color: #BDA888;
+    background-color: white;
 
     z-index: 13;
 }
@@ -220,7 +212,7 @@ body {
 }
 
 #stockControl {
-    background-color: #BDA888;
+    background-color: white;
     position: absolute;
     left: 67%;
     top: 3%;
@@ -252,7 +244,7 @@ body {
     width: 40%;
     height: 93%;
 
-    background-color: #BDA888;
+    background-color: white;
 }
 
 .bodegaTblInput {
@@ -263,8 +255,6 @@ body {
 .abmBodegasBtns {
     width: 24%;
     border: solid 1px black;
-    background-color: #2F528C;
-    color: white;
 }
 
 #dbBodegas {
@@ -281,13 +271,7 @@ body {
     height: 52%;
     width: 35%;
 
-    background-color:#BDA888;
-}
-
-.abmCepasButtons {
-    border: solid 1px black;
-    background-color: #2F528C;
-    color: white;
+    background-color: white;
 }
 
 #tblNombreCepa {
@@ -309,7 +293,7 @@ body {
     width: 35%;
     height: 37%;
 
-    background-color: #BDA888;
+    background-color: white;
 }
 
 .relateCombo {
@@ -362,7 +346,6 @@ body {
     left: 5%;
     margin: 3%; 
     z-index: 21;
-
 }
 
 #btns {
