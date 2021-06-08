@@ -17,7 +17,7 @@ body {
 
 #homeBg {
     position: absolute;
-    top: 0px;
+    top: -1%;
     left: -1%;
     width: 105%;
     z-index: 15;
