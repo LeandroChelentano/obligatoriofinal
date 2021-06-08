@@ -115,7 +115,7 @@
         <div id="vinos">
             <div id="tableData">
                 <form id="formWine1">
-                    <table id="tblVinos" border="3" borderColor='white' >
+                    <table id="tblVinos" border="3">
                         <p class="tblBigTitle" style="margin-left: 10%; position: absolute; top: 2%;">Datos:</p>
                         <p class="tblSmallTitle" style="position: absolute; top: 3.5%; margin-left: 22%;" id="displayId">Id: Automatica</p>
                         <input type="button" id="btnShowDeletedIds" onclick="showDeletedIds()" value="Usar Id Eliminada">
@@ -157,14 +157,14 @@
                         <p class="bigTitle" style="padding-top: 7%;">Vender</p>
                         <p class="smallTitle" id="selectedWineDisplayer">No hay seleccion</p>
                         <input type="text" id="txtCantidadARestar" style="width: 33%; margin-bottom: 1%;" >
-                        <br><button onclick="sellWine()" style="width: 30%;  margin-bottom: 5%;">Vender</button>
+                        <br><button onclick="sellWine()" style="width: 30%;  margin-bottom: 5%; background-color: #2F528C; color: white;">Vender</button>
                     </table>
 
                     <table name="tblRefill">
                         <p class="bigTitle">Agregar Stock</p>
                         <p class="smallTitle" id="selectedWineDisplayer2">No hay seleccion</p>
                         <input type="text" id="txtCantidadASumar" style="width: 33%; margin-bottom: 1%;" >
-                        <br><button onclick="refillWine()" style="width: 30%;">Agregar stock</button>
+                        <br><button onclick="refillWine()" style="width: 30%; background-color: #2F528C; color: white;">Agregar stock</button>
                     </table>
                 </center>  
             </div>
@@ -176,7 +176,7 @@
             <div class="bodegas">
                 <center>
                     <p class="bigTitle" style="margin-bottom: 5%;">Bodegas</p>
-                    <table border="3"  style="width: 90%;" borderColor='white'>
+                    <table border="3" style="width: 90%; background-color: white;">
                         <tr>
                             <td style="padding: 3%;">Nombre:</td>
                             <td><input type="text" class="bodegaTblInput" id="nombreBodega"></td>
@@ -211,14 +211,14 @@
             <div class="cepas">
                 <center>
                     <p class="bigTitle" style="margin-bottom: 5%;">Cepas</p>
-                    <table border="3" style="width: 90%;" borderColor='white'>
+                    <table border="3" style="width: 90%; background-color: white;">
                         <tr>
                             <td style="padding: 3%;">Nombre:</td>
                             <td><input type="text" id="tblNombreCepa"></td>
                         </tr>
                     </table>
     
-                    <table style="margin-top: 1%; margin-bottom: 3%;">
+                    <table style="margin-top: 1%; margin-bottom: 3%; width: 90%;">
                         <tr>
                             <td>
                                 <button onclick="addCepa()" class="abmCepasButtons">ALTA</button>
@@ -237,7 +237,7 @@
                 <center>
                     <p class="bigTitle" style="margin-bottom: 4%; margin-top: 11%;">Agregar vino a bodegas</p>
                     
-                    <table border="3" id="tblRelate" style="width: 90%;" borderColor='white'>
+                    <table border="3" id="tblRelate" style="width: 90%; background-color: white;">
                         <tr>
                             <td style="width: 30%;"><p class="smallTitle" style="padding: 3%;">Vino:</p></td>
                             <td><select id="selectWine" class="relateCombo"></select></td>

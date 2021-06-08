@@ -48,6 +48,7 @@ body {
 } 
 
 .logoSideBar {
+    margin-top: 10px;
     height: 200px;
 }
 
@@ -181,7 +182,7 @@ body {
 #tblVinos {
     margin: 10%;
     margin-bottom: 1%;
-    background-color: #BDA888 ;
+    background-color: white ;
 }
 
 #abmBtns {
@@ -288,6 +289,7 @@ body {
     border: solid 1px black;
     background-color: #2F528C;
     color: white;
+    width: 24.5%;
 }
 
 #tblNombreCepa {
