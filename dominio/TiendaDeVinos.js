@@ -1,7 +1,6 @@
 // NOTAS IMPORTANTES:
 // - No se puede modificar el ID.
 // - No se puede ingresar vinos con ID repetidos.
-// - El código deberá incluir comentarios.
 
 // ESTADISTICAS:
 // 1. Mostrar el nombre de la bodega que tiene el vino más barato.
@@ -9,11 +8,7 @@
 // 3. Dado el nombre de una cepa y una bodega mostrar cuantas hay en stock.
 //      Se ingresa el nombre de la cepa se debe mostrar la cantidad que hay en stock.
 
-var vinos = new Array()     // id, nombre, stock, precio, cepa, bodega.. <IMG>
-                            // Se pide una bodega, desde ABM bodegas agregar vino a otras por ID,
-                            // no se necesita duplicarlo, es necesario que no se dupliquen para
-                            // seleccionarlo y mostrar todas las bodegas que lo tienen.
-
+var vinos = new Array()     // id, nombre, stock, precio, cepa, bodegas
 
 // Las ids de vinos que se utilizan o quedaron en desuso se almacenan aqui.
 var ids = new Array()
@@ -21,7 +16,6 @@ var ids = new Array()
 // Las ids de vinos eliminadas se almacenan en este array, con el fin de que el usuario pueda
 // volver a colocar un vino eliminado en una posicion anterior a la asignada automaticamente.
 var deletedIds = new Array()
-
 
 // Se declaran variables globales para ser utilizadas por diferentes funciones.
 var Name = '';
@@ -35,6 +29,7 @@ function getDataWine() {
     Stock = parseInt(document.getElementById("stockWine").value);
 }   
 
+// Funcion para colocar todas las cepas en el select que se seleccionan en el form de los vinos.
 function getCepas()
 {
     var cepaBox = document.getElementById('cepaBox');
@@ -142,6 +137,7 @@ function verifyInteger() {
     }
 }
 
+// Verifica que la cantidad a vender o a agregar de stock sea numerica.
 function verifyOtherInteger(b) {
     if (b != b * 2 / 2) {
         return true;
@@ -164,6 +160,7 @@ function verifyEmpty() {
     }
 }
 
+// Verifica que no es un string vacio.
 function verifyRefillEmpty()
 {
     if(document.getElementById('txtCantidadASumar').value == "")
@@ -357,6 +354,7 @@ function remove() {
     DeletedIdSelected = -1
 }
 
+// Funcion modificar de los vinos.
 function modify() {
     var dataDisplayer = document.getElementById("dbWine");
     var sel = dataDisplayer.selectedIndex
@@ -434,11 +432,13 @@ function modify() {
     DeletedIdSelected = -1
 }
 
+// Funcion que vuelve a colocar un texto predefinido cuando no hay vino seleccionado.
 function resetSelectedWineSellAndRefill() {
     document.getElementById("selectedWineDisplayer").innerHTML = 'No hay seleccion'
     document.getElementById("selectedWineDisplayer2").innerHTML = 'No hay seleccion'
 }
 
+// Funcion para ejectur la venta de vinos.
 function sellWine()
 {
     var cantidad = parseInt(document.getElementById('txtCantidadARestar').value); 
@@ -466,7 +466,7 @@ function sellWine()
     {
         if(verifyOtherInteger(cantidad))
         {
-            alert("La cantidad a vernder debe ser numerica")
+            alert("La cantidad a vender debe ser numerica")
         }
         else
         {
@@ -486,6 +486,7 @@ function sellWine()
     resetSelectedWineSellAndRefill()
 }
 
+// Funcion para agregar sumar un monto a la cantidad de vinos disponibles.
 function refillWine() {
     var cantidad = parseInt(document.getElementById('txtCantidadASumar').value);
     var dataDisplayer = document.getElementById("dbWine");
@@ -533,8 +534,6 @@ function refillWine() {
 }
 
 // CODIGO DE CEPAS Y BODEGAS
-// CODIGO DEFINITIVO
-// NO MODIFICAR NO REFACTORIZAR
 
 var bodegas = new Array() // id, nombre, telefono, localidad, idDeVinosContenidos
 var idsBodegas = new Array() // Se guardan los ids utilizados en las bodegas.
@@ -547,12 +546,14 @@ var NOMBRE = '';
 var TELEFONO = '';
 var LOCALIDAD = '';
 
+// Refrescar las variables globales.
 function refreshData() {
     NOMBRE = document.getElementById('nombreBodega').value
     TELEFONO = document.getElementById('telefonoBodega').value
     LOCALIDAD = document.getElementById('localidadBodega').value
 }
 
+// Verifica que no hayan strings sin datos.
 function validateEmpty() {
     let sthWrong = 0
     for (var i = 0; i < toValidate.length; i++) {
@@ -568,12 +569,14 @@ function validateEmpty() {
     }
 }
 
+// Empleada para limpiar la tabla de bodegas.
 function clearBodegasTable() {
     document.getElementById('nombreBodega').value = ''
     document.getElementById('telefonoBodega').value = ''
     document.getElementById('localidadBodega').value = ''
 }
 
+// Mostrar los datos en el select de las bodegas.
 function showData() {
     var displayerBodegas = document.getElementById('dbBodegas')
     displayerBodegas.innerHTML = ''
@@ -645,6 +648,7 @@ function addBodegas() {
     }
 }
 
+// Funciona para seleccionar un item del select.
 function bodegasSelection() {
     var displayerBodegas = document.getElementById('dbBodegas')
     var selection = displayerBodegas.selectedIndex
@@ -654,6 +658,7 @@ function bodegasSelection() {
     document.getElementById('localidadBodega').value = bodegas[selection].localidad
 }
 
+// Modificar un elemento de las bodegas.
 function modifyBodegas() {
     var displayerBodegas = document.getElementById('dbBodegas')
     var selection = displayerBodegas.selectedIndex
@@ -682,6 +687,7 @@ function modifyBodegas() {
     uploadDataStats()
 }
 
+// Eliminar un objeto de bodegas.
 function removeBodega() {
     var displayerBodegas = document.getElementById('dbBodegas')
     var selection = displayerBodegas.selectedIndex
@@ -703,10 +709,12 @@ var NAME_CEPA = '';
 
 var idsCepas = new Array();
 
+// Refrescar la variable global.
 function refreshCepa() {
     NAME_CEPA = document.getElementById('tblNombreCepa').value
 }
 
+// Alta de un nuevo objeto cepa.
 function addCepa() {
     refreshCepa()
 
@@ -729,6 +737,7 @@ function addCepa() {
     uploadDataStats()
 }
 
+// Mostrar todas las cepas en el select correspondiente.
 function showCepas() {
     var displayerCepas = document.getElementById('dbCepas')
     displayerCepas.innerHTML = ''
@@ -760,15 +769,18 @@ function showCepas() {
     }
 }
 
+// Limpiar la tabla de cepas.
 function clearCepasTable() {
     document.getElementById('tblNombreCepa').value = ''
 }
 
+// Seleccionar un objeto cepa de la lista.
 function selectCepa() {
     var index = document.getElementById('dbCepas').selectedIndex
     document.getElementById('tblNombreCepa').value = cepas[index].nombre
 }
 
+// Elminar un objeto cepa de la lista.
 function removeCepa() {
     var index = document.getElementById('dbCepas').selectedIndex
     
@@ -783,6 +795,7 @@ function removeCepa() {
     uploadDataStats()
 }
 
+// Modificar un elemento cepa de la lista.
 function modifyCepa() {
     var index = document.getElementById('dbCepas').selectedIndex
 
@@ -808,6 +821,7 @@ function modifyCepa() {
     uploadDataStats()
 }
 
+// Colocar los text box del form de relacionar objetos a vacio.
 function refreshRelateData() {
     var selectWine = document.getElementById('selectWine')
     var selectStore = document.getElementById('selectStore')
@@ -837,6 +851,7 @@ var storee = ''
 var wineeI = 0
 var storeeI = 0
 
+// Refrescar las variables globales de la relacion. 
 function getRelate() {
     selectWine = document.getElementById('selectWine')
     selectStore = document.getElementById('selectStore')
@@ -916,6 +931,7 @@ function desrelateWineStock() {
     StoreWithMoreLowCostWine()
 }
 
+// Cargar las id eliminadas en el select.
 function loadDeletedIds() {
     var displayerDeletedIds = document.getElementById('displayerDeletedIds')
     displayerDeletedIds.innerHTML = ''
@@ -929,6 +945,7 @@ function loadDeletedIds() {
 var DeletedIdSelected = -1
 var DeletedIdSelectedIndex = 0
 
+// Funcion para seleccionar una id eliminada para ser reutilizada.
 function selectDeletedId() {
     var displayerDeletedIds = document.getElementById('displayerDeletedIds')
     DeletedIdSelected = displayerDeletedIds.options[displayerDeletedIds.selectedIndex].value
@@ -939,9 +956,8 @@ function selectDeletedId() {
 
 // STATS
 
-function stockSearch() {
-    // uploadDataStats()
-    
+// Funcion para buscar el stock de vinos en base a una bodega y una cepa.
+function stockSearch() {    
     var storeeCMB = document.getElementById('selectBodega')
     var cepaaCMB = document.getElementById('selectCepa')
     var storee = storeeCMB.options[storeeCMB.selectedIndex].value
@@ -977,6 +993,7 @@ function stockSearch() {
     document.getElementById('showStock').value = totalStock
 }
 
+// Carga los datos referentes a la busqueda de stock anterior.
 function uploadDataStats() {
     var cmbBodegas = document.getElementById('selectBodega')
     var cmbCepas = document.getElementById('selectCepa')
@@ -999,7 +1016,7 @@ function uploadDataStats() {
     }
 }
 
-// Cepa mas cara
+// Buscar cepa mas cara
 function moreExpensiveCepa() {
     var priceWineMoreExpensive = 0;
     var cepaMoreExpensive;
@@ -1015,7 +1032,6 @@ function moreExpensiveCepa() {
         document.getElementById('wineHighCost').value = cepaMoreExpensive;
     }
 }
-
 
 // BODEGA CON EL VINO MAS BARATO
 function StoreWithMoreLowCostWine() {
